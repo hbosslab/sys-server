@@ -1,0 +1,26 @@
+
+server:
+  port: 8079
+spring:
+  application:
+    name: eureka-server
+
+eureka:
+  server:
+    eviction-interval-timer-in-ms: 1000     #服务端每隔1000获取一次服务列表
+    enable-self-preservation: false         #关闭自我保护模式
+    renewal-percent-threshold: 0.85          #自我保护的错误系数，默认为0.85
+    wait-time-in-ms-when-sync-empty: 1       #同步失败的等待时间
+    number-of-replication-retries: 5         #同步失败的重试次数
+  client:
+    register-with-eureka: true #允许自己注册自己
+    fetch-registry: false   #表示是否从Eureka Server获取注册的服务信息
+    serviceUrl:
+      defaultZone: http://localhost:8079/eureka/   # 默认注册中心的地址，所有的微服务在启动的时候就要去找这个地址，在服务的注册时候就会注册在这个地址上
+
+
+  instance:                                #指定一个instance-id因为服务之间调用都是通过 instance-id来调用的
+    #hostname:eureka1                       #可以通过hostname指定（同一局域网下可以这样设置，在类似上线的大网是不能用的，可能会出现重复）,默认注册到服务中心
+    prefer-ip-address: true              # 启用ip前缀
+    ip-address: 127.0.0.1                 #设置前缀
+    instance-id: ${spring.application.name}   # 设置注册服务中心显示的实例名称

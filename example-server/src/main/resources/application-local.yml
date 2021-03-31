@@ -15,7 +15,7 @@ spring:
         query-passing: true
         #        服务名称
         service-name: ${spring.application.name}
-        ip-address: http://aolive-opapi.cn1.utools.club
+#        ip-address: http://aolive-opapi.cn1.utools.club
         #        健康检查地址
         #        health-check-path: /actuator/health
         health-check-url: http://example-server.cn.utools.club/actuator/health
@@ -25,4 +25,5 @@ spring:
         instance-id: ${spring.application.name}:${spring.profiles.active}-${spring.cloud.client.ip-address}:${server.port}
         #        注册服务时使用的标签
         tags: version=1.0.0,${spring.profiles.active}
-        default-query-tag: ${spring.application.name},${spring.profiles.active}
+#        如果没有设置查询服务列表的标签，就使用此配置来指定多个标签
+#        default-query-tag: ${spring.application.name},${spring.profiles.active}

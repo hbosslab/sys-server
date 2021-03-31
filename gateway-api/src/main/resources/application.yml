@@ -5,6 +5,8 @@ server:
 spring:
   application:
     name: gateway-api
+  profiles:
+    active: local
 
   cloud:
     gateway:
@@ -20,19 +22,8 @@ spring:
               - DELETE
       routes:
         - id: aolive-api
-          uri: http://localhost:8081
+          uri: lb://aolive-api
           predicates:
             - Path=/api/**
           filters:
             - StripPrefix=1
-
-eureka:
-  client:
-    service-url:
-      defaultZone: http://localhost:8079/eureka
-
-  instance:
-    prefer-ip-address: true
-    instance-id: ${spring.application.name}-${spring.profiles.active}
-
-

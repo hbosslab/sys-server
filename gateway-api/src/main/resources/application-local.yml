@@ -1,0 +1,19 @@
+
+
+spring:
+  cloud:
+    consul:
+      host: 139.196.4.176
+      port: 8500
+      discovery:
+        enabled: true
+        deregister: true
+        prefer-ip-address: true
+        query-passing: true
+        service-name: ${spring.application.name}
+        ip-address: http://aolive-opapi.cn1.utools.club
+        health-check-url: http://gateway-api.cn.utools.club/actuator/health
+        health-check-interval: 15s
+        instance-id: ${spring.application.name}:${spring.profiles.active}-${spring.cloud.client.ip-address}:${server.port}
+        tags: version=1.0.0,${spring.profiles.active}
+#        default-query-tag: ${spring.application.name},${spring.profiles.active}

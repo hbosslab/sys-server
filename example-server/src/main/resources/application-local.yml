@@ -1,0 +1,28 @@
+
+spring:
+  cloud:
+    consul:
+      host: 139.196.4.176
+      port: 8500
+      discovery:
+        #        启用服务注册发现
+        enabled: true
+        #        禁用服务的自动注销
+        deregister: true
+        #       在注册过程中，请使用IP地址而不是主机名
+        prefer-ip-address: true
+        #
+        query-passing: true
+        #        服务名称
+        service-name: ${spring.application.name}
+        ip-address: http://aolive-opapi.cn1.utools.club
+        #        健康检查地址
+        #        health-check-path: /actuator/health
+        health-check-url: http://example-server.cn.utools.club/actuator/health
+        #        健康检查间隔
+        health-check-interval: 15s
+        #       唯一的服务实例id
+        instance-id: ${spring.application.name}:${spring.profiles.active}-${spring.cloud.client.ip-address}:${server.port}
+        #        注册服务时使用的标签
+        tags: version=1.0.0,${spring.profiles.active}
+        default-query-tag: ${spring.application.name},${spring.profiles.active}

@@ -25,6 +25,7 @@
     <modules>
         <module>gateway-api</module>
         <module>eureka-server</module>
+        <module>example-server</module>
     </modules>
 
     <properties>
